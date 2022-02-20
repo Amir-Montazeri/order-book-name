@@ -5,7 +5,7 @@ const settings = {
     backgroundColor: 'transparent',
     height: 210,
     scrollablePlotArea: {
-      minWidth: 210,
+      minWidth: 190,
       scrollPositionX: 1
     }
   },

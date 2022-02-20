@@ -1,6 +1,7 @@
 import './global.css';
 import React from 'react';
 import styled from 'styled-components';
+import { RecoilRoot } from 'recoil';
 import OrderBook from './pages/OrderBook';
 
 const Container = styled.section`
@@ -14,8 +15,10 @@ const Container = styled.section`
 
 export default function App() {
   return (
-    <Container>
-      <OrderBook />
-    </Container>
-  )
+    <RecoilRoot>
+      <Container>
+        <OrderBook />
+      </Container>
+    </RecoilRoot>
+  );
 }

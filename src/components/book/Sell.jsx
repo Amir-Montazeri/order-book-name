@@ -1,18 +1,27 @@
 import React from 'react';
-import { VscChromeClose } from 'react-icons/vsc';
-import { Container, ContainerGrid, ItemGrid, Text } from './briefStyledComponents';
+import { atom, useRecoilState } from 'recoil';
+import { Container, ContainerGrid, ItemGrid } from './briefStyledComponents';
+import Volume from './Volume';
+
+const amountState = atom({
+  key: 'sellAmountState',
+  default: {0: 312, 3: 123},
+});
 
 export default function Sell() {
   const [selectedColumn, setSelectedColumn] = React.useState(0);
+  const [amount, setAmount] = useRecoilState(amountState);
 
   return (
     <Container>
-      <ContainerGrid moveable={true}>
-        <ItemGrid color='#D2F7E5' column={selectedColumn}>
-          <VscChromeClose color='red' cursor='pointer' onClick={() => setSelectedColumn(selectedColumn + 1)} />
-          <Text right>554</Text>
-        </ItemGrid>
-      </ContainerGrid>
+      <Volume
+        currentColumn={selectedColumn}
+        maxVolume={4}
+        setColumn={column => setSelectedColumn(column)}
+        value={amount[selectedColumn]}
+        setValue={value => setAmount({...amount, [selectedColumn]: value})}
+        left
+      />
       <ContainerGrid>
         <ItemGrid color='#69EBEC'>1.84</ItemGrid>
         <ItemGrid color='#69EBEC'>1.8</ItemGrid>

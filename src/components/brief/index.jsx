@@ -6,6 +6,9 @@ import Chart from './Chart';
 
 const Container = styled.div`
   width: 210px;
+  @media screen and (max-width: 484px) {
+    width: 190px;
+  }
 `;
 
 const TopContent = styled.div`

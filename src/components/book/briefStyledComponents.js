@@ -6,9 +6,13 @@ export const Container = styled.div`
   height: 160px;
   display: flex;
   justify-content: space-between;
+  @media screen and (max-width: 484px) {
+    padding: 0;
+  }
 `;
 
 export const ContainerGrid = styled.ul`
+  width: 50px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -16,8 +20,11 @@ export const ContainerGrid = styled.ul`
 `;
 
 export const ItemGrid = styled.li`
+  width: 100%;
   height: 25px;
   display: flex;
+  flex-direction: ${props => props.right ? 'row-reverse' : 'row'};
+  justify-content: center;
   align-items: center;
   color: ${props => props.color};
   ${props => props.column && `transform: translateY(${props.column * 25}px)`};
@@ -25,5 +32,7 @@ export const ItemGrid = styled.li`
 `;
 
 export const Text = styled.p`
-  transform: ${props => `translateX(${props.right ? '+' : '-'}15px)`};
+  padding: 3px 0;
+  text-align: center;
+  cursor: pointer;
 `;

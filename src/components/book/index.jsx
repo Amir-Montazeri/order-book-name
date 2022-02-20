@@ -6,6 +6,10 @@ import Sell from './Sell';
 const Container = styled.div`
   margin: 0 10px;
   width: 216px;
+  @media screen and (max-width: 484px) {
+    margin: 0;
+    width: 138px;
+  }
 `;
 
 const Grid = styled.div`

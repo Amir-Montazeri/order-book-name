@@ -1,9 +1,16 @@
 import React from 'react';
-import { VscChromeClose } from 'react-icons/vsc';
-import { Container, ContainerGrid, ItemGrid, Text } from './briefStyledComponents';
+import { atom, useRecoilState } from 'recoil';
+import { Container, ContainerGrid, ItemGrid } from './briefStyledComponents';
+import Volume from './Volume';
+
+const amountState = atom({
+  key: 'buyAmountState',
+  default: {0: 120},
+});
 
 export default function Buy() {
   const [selectedColumn, setSelectedColumn] = React.useState(0);
+  const [amount, setAmount] = useRecoilState(amountState)
 
   return (
     <Container>
@@ -21,12 +28,14 @@ export default function Buy() {
         <ItemGrid color='#69EBEC'>1.76</ItemGrid>
         <ItemGrid color='#69EBEC'>1.7</ItemGrid>
       </ContainerGrid>
-      <ContainerGrid moveable={true}>
-        <ItemGrid color='#D2F7E5' column={selectedColumn}>
-          <Text left>554</Text>
-          <VscChromeClose color='red' cursor='pointer' onClick={() => setSelectedColumn(selectedColumn + 1)} />
-        </ItemGrid>
-      </ContainerGrid>
+      <Volume
+        currentColumn={selectedColumn}
+        maxVolume={4}
+        setColumn={column => setSelectedColumn(column)}
+        value={amount[selectedColumn]}
+        setValue={value => setAmount({...amount, [selectedColumn]: value})}
+        right
+      />
     </Container>
   );
 };
