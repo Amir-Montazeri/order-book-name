@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.a571b349.css","mappings":"AAAA,EAGE,qBAAsB,CAFtB,QAAS,CACT,SAEF,CAEA,OACE,WAAY,CACZ,cACF","sources":["global.css"],"sourcesContent":["* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n}\r\n\r\nbutton {\r\n  border: none;\r\n  cursor: pointer;\r\n}"],"names":[],"sourceRoot":""}
