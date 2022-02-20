@@ -21,8 +21,8 @@ export default function Sell() {
         left
       />
       <div>
-        {data.map(({ price, size }) => (
-          <ContainerColumn>
+        {data.map(({ price, size, id }) => (
+          <ContainerColumn key={id}>
             <ItemGrid color='#69EBEC'>{price}</ItemGrid>
             <ItemGrid color='#EFEFEF'>{size}</ItemGrid>
           </ContainerColumn>

@@ -13,8 +13,8 @@ export default function Buy() {
   return (
     <Container>
       <div>
-      {data.map(({ price, size }) => (
-          <ContainerColumn>
+      {data.map(({ price, size, id }) => (
+          <ContainerColumn key={id}>
             <ItemGrid color='#EFEFEF'>{size}</ItemGrid>
             <ItemGrid color='#69EBEC'>{price}</ItemGrid>
           </ContainerColumn>
