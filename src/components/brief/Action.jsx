@@ -1,15 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const color = {
-  pause: {
-    bg: '#006766'
-  },
-  unwatch: {
-    bg: '#660032'
-  }
-}
-
 const Container = styled.div`
   width: 100%;
   display: flex;
@@ -21,7 +12,7 @@ const Button = styled.button`
   margin: 0 3px;
   font-size: 19px;
   color: #ececec;
-  background: ${props => color[props.scope].bg};
+  background: ${props => props.bg};
   border: 2px solid gray;
   border-radius: 7px;
 `;
@@ -29,8 +20,8 @@ const Button = styled.button`
 export default function Action() {
   return (
     <Container>
-      <Button scope='pause'>PAUSE</Button>
-      <Button scope='unwatch'>unwatch</Button>
+      <Button bg='#006766'>PAUSE</Button>
+      <Button bg='#660032'>unwatch</Button>
     </Container>
   )
 }
