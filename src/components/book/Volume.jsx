@@ -2,7 +2,7 @@ import React from 'react';
 import { VscChromeClose } from 'react-icons/vsc';
 import { ImArrowUp, ImArrowDown } from 'react-icons/im';
 import styled from 'styled-components';
-import { ContainerGrid, ItemGrid, Text } from './briefStyledComponents';
+import { ItemGrid, Text } from './briefStyledComponents';
 
 const VolumeContainer = styled.div`
   display: flex;
@@ -35,27 +35,25 @@ export default function Volume({ currentColumn, maxVolume, setColumn, value, set
   };
 
   return (
-    <ContainerGrid moveable={true}>
+    <div>
       <ItemGrid color='#D2F7E5' right={right} column={currentColumn}>
         <VscChromeClose color='red' cursor='pointer' onClick={() => setValue(0)} />
         <VolumeContainer right={right} left={left}>
           <ImArrowUp
             color='#CDEA8B'
-            opacity={accessChangeColumn('reduce') ? 1 : 0}
-            style={{ transition: '.2s' }}
+            style={{ transition: '.2s' }, !accessChangeColumn('reduce') && { opacity: 0, visibility: 'hidden' }}
             cursor='pointer'
-            onClick={() => setColumn(currentColumn - 1)}
+            onClick={() => accessChangeColumn('reduce') && setColumn(currentColumn - 1)}
           />
           <Text onClick={() => console.log('open modal')}>{value || 0}</Text>
           <ImArrowDown
             color='#CDEA8B'
-            opacity={accessChangeColumn('add') ? 1 : 0}
-            style={{ transition: '.2s' }}
+            style={{ transition: '.2s' }, !accessChangeColumn('add') && { opacity: 0, visibility: 'hidden' }}
             cursor='pointer'
-            onClick={() => setColumn(currentColumn + 1)}
+            onClick={() => accessChangeColumn('add') && setColumn(currentColumn + 1)}
           />
         </VolumeContainer>
       </ItemGrid>
-    </ContainerGrid>
+    </div>
   );
 };

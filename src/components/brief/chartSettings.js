@@ -1,9 +1,11 @@
 const settings = {
+  credits: false,
   chart: {
     type: 'spline',
     renderTo: 'chart',
     backgroundColor: 'transparent',
-    height: 210,
+    height: 180,
+    margin: [20, 0, 10, 45],
     scrollablePlotArea: {
       minWidth: 190,
       scrollPositionX: 1
@@ -23,40 +25,29 @@ const settings = {
       text: ''
     }
   },
-  tooltip: {
-    valueSuffix: ' m/s'
-  },
   plotOptions: {
     spline: {
       lineWidth: 4,
-      states: {
-        hover: {
-          lineWidth: 5
-        }
-      },
       marker: {
         enabled: false
       },
     }
   },
   series: [{
-    name: 'Hestavollane',
+    showInLegend: false,
+    enableMouseTracking: false,
     data: [
       1.2, 1.3, 1.7, 1.7, 1.5, 1.52, 1.54, 1.56, 1.6
     ],
     color: 'lightgreen'
   }, {
-    name: 'Vik',
+    showInLegend: false,
+    enableMouseTracking: false,
     data: [
       1.0, 1.05, 1.1, 1.1, 1.05, 1.0, 1.01, 1.0, 1.0
     ],
     color: 'blue'
-    }],
-  navigation: {
-    menuItemStyle: {
-      fontSize: '10px'
-    }
-  }
-}
+  }],
+};
 
 export default settings;

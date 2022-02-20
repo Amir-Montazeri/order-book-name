@@ -1,41 +1,33 @@
 import React from 'react';
-import { atom, useRecoilState } from 'recoil';
-import { Container, ContainerGrid, ItemGrid } from './briefStyledComponents';
+import { useRecoilState } from 'recoil';
+import { sellAmountState } from './book.atom';
+import { Container, ContainerColumn, ItemGrid } from './briefStyledComponents';
+import useData from './useData';
 import Volume from './Volume';
-
-const amountState = atom({
-  key: 'sellAmountState',
-  default: {0: 312, 3: 123},
-});
 
 export default function Sell() {
   const [selectedColumn, setSelectedColumn] = React.useState(0);
-  const [amount, setAmount] = useRecoilState(amountState);
+  const [amount, setAmount] = useRecoilState(sellAmountState);
+  const data = useData('sell');
 
   return (
     <Container>
       <Volume
         currentColumn={selectedColumn}
-        maxVolume={4}
+        maxVolume={data.length - 1}
         setColumn={column => setSelectedColumn(column)}
         value={amount[selectedColumn]}
-        setValue={value => setAmount({...amount, [selectedColumn]: value})}
+        setValue={value => setAmount({ ...amount, [selectedColumn]: value })}
         left
       />
-      <ContainerGrid>
-        <ItemGrid color='#69EBEC'>1.84</ItemGrid>
-        <ItemGrid color='#69EBEC'>1.8</ItemGrid>
-        <ItemGrid color='#69EBEC'>1.78</ItemGrid>
-        <ItemGrid color='#69EBEC'>1.76</ItemGrid>
-        <ItemGrid color='#69EBEC'>1.7</ItemGrid>
-      </ContainerGrid>
-      <ContainerGrid>
-        <ItemGrid color='#EFEFEF'>4234</ItemGrid>
-        <ItemGrid color='#EFEFEF'>1239</ItemGrid>
-        <ItemGrid color='#EFEFEF'>153</ItemGrid>
-        <ItemGrid color='#EFEFEF'>29384</ItemGrid>
-        <ItemGrid color='#EFEFEF'>1238</ItemGrid>
-      </ContainerGrid>
+      <div>
+        {data.map(({ price, size }) => (
+          <ContainerColumn>
+            <ItemGrid color='#69EBEC'>{price}</ItemGrid>
+            <ItemGrid color='#EFEFEF'>{size}</ItemGrid>
+          </ContainerColumn>
+        ))}
+      </div>
     </Container>
-  )
+  );
 };

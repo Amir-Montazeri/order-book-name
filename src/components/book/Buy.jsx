@@ -1,33 +1,25 @@
 import React from 'react';
-import { atom, useRecoilState } from 'recoil';
-import { Container, ContainerGrid, ItemGrid } from './briefStyledComponents';
+import { useRecoilState } from 'recoil';
+import { buyAmountState } from './book.atom';
+import { Container, ContainerColumn, ItemGrid } from './briefStyledComponents';
+import useData from './useData';
 import Volume from './Volume';
-
-const amountState = atom({
-  key: 'buyAmountState',
-  default: {0: 120},
-});
 
 export default function Buy() {
   const [selectedColumn, setSelectedColumn] = React.useState(0);
-  const [amount, setAmount] = useRecoilState(amountState)
+  const [amount, setAmount] = useRecoilState(buyAmountState);
+  const data = useData('buy');
 
   return (
     <Container>
-      <ContainerGrid>
-        <ItemGrid color='#EFEFEF'>4234</ItemGrid>
-        <ItemGrid color='#EFEFEF'>1239</ItemGrid>
-        <ItemGrid color='#EFEFEF'>153</ItemGrid>
-        <ItemGrid color='#EFEFEF'>29384</ItemGrid>
-        <ItemGrid color='#EFEFEF'>1238</ItemGrid>
-      </ContainerGrid>
-      <ContainerGrid>
-        <ItemGrid color='#69EBEC'>1.84</ItemGrid>
-        <ItemGrid color='#69EBEC'>1.8</ItemGrid>
-        <ItemGrid color='#69EBEC'>1.78</ItemGrid>
-        <ItemGrid color='#69EBEC'>1.76</ItemGrid>
-        <ItemGrid color='#69EBEC'>1.7</ItemGrid>
-      </ContainerGrid>
+      <div>
+      {data.map(({ price, size }) => (
+          <ContainerColumn>
+            <ItemGrid color='#EFEFEF'>{size}</ItemGrid>
+            <ItemGrid color='#69EBEC'>{price}</ItemGrid>
+          </ContainerColumn>
+        ))}
+      </div>
       <Volume
         currentColumn={selectedColumn}
         maxVolume={4}
